@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap");
+@import "color.css";
+body {
+  font-family: "Inclusive Sans", sans-serif;
+}
+
+section {
+  margin: 3rem 0;
+}
+
+.card {
+  border: none !important;
+}
+.card .card-header {
+  background-color: #fff !important;
+}
+
+.modal .form-control {
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  color: #fff;
+  border: none;
+  border-radius: 0 !important;
+  border-bottom: 2px solid #fff !important;
+  box-shadow: none;
+}
+.modal .form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.delete-btn {
+  cursor: pointer;
+}
+
+.form-control-check {
+  width: 100px !important;
+  accent-color: #ff0000;
+  display: none;
+}
+.form-control-check:checked + .box-content {
+  background-color: #ff0000;
+}
+.form-control-check:checked + .box-content::before {
+  transform: translateX(80%);
+}
+
+input.floating {
+  width: 350px;
+}
+input.floating:focus, input.floating:not(:placeholder-shown) {
+  border: 2px solid #5151d9 !important;
+}
+input.floating:focus ~ .float-label, input.floating:not(:placeholder-shown) ~ .float-label {
+  font-size: 13px;
+  margin: 5px;
+  padding: 5px;
+  transform: translateY(-35px);
+  background-color: #fff;
+  color: #5151d9;
+}
+
+.float-label {
+  position: absolute;
+  top: 15.5px;
+  left: 17.5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.hr {
+  border-bottom: 1px solid #cccccc;
+  height: 10px;
+  width: 200px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.box-content {
+  margin-bottom: 5px;
+  position: relative;
+  height: 30px;
+  cursor: pointer;
+  width: 50px;
+  border-radius: 3rem;
+  background-color: #cccccc;
+  transition: 0.2s ease-in-out;
+}
+.box-content::before {
+  content: "";
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: absolute;
+  margin: 2.5px;
+  background-color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.nav-links > div {
+  height: 50px;
+  width: 50px;
+}
+.nav-links .user-links {
+  display: none;
+  transition: transform 0.2s ease-in-out;
+  width: 200px;
+}
+@media only screen and (min-width: 992px) {
+  .nav-links .user-links {
+    left: -200% !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .nav-links .user-links {
+    left: -200% !important;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .nav-links .user-links {
+    left: -300% !important;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
