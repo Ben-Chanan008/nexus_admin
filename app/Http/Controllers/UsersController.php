@@ -47,13 +47,19 @@ class UsersController extends Controller
             'password' => 'required',
         ]);
 
-//        if (DB::table('account_types')->where('account_type', '=', 'Administrator Account')->get())
+        $current_user = User::where('email', $form_fields['email'])->get();
+//        return dd($current_user[0]->account);
+        $current_user_account = $current_user[0];
+
+
+        if ($current_user_account->account === 1) {
             if (auth()->attempt($form_fields)) {
                 $request->session()->regenerate();
-
                 return response(['/'], 200);
             } else
                 return response(['Invalid Credentials'], 422);
+        } else
+            return response(['Invalid Account Type'], 422);
     }
 
     public function logout(Request $request)

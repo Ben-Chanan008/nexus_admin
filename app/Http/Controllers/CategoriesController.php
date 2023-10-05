@@ -27,4 +27,12 @@ class CategoriesController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+//        $category = Categories::find($id);
+
+        Categories::destroy($id);
+
+        return response([]);
+    }
 }

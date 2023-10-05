@@ -36,5 +36,8 @@ Route::get('logout', [UsersController::class, 'logout'])->middleware('auth');
 
 Route::get('categories', [CategoriesController::class, 'index'])->middleware('auth');
 Route::post('categories', [CategoriesController::class, 'store']);
+Route::delete('categories/{category}/delete', [CategoriesController::class, 'destroy']);
+
+Route::get('products');
 
 //Route::post('account', [AccountController::class, 'edit']);

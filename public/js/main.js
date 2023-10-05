@@ -1,4 +1,5 @@
 const deleteBtn = document.querySelector('.delete-btn');
+const categoriesDeleteBtn = document.querySelector('.categories-delete-btn');
 const accountType = document.querySelectorAll('.account-type');
 const loginForm = document.querySelector('.login-form');
 const loader = document.querySelector('.loader');
@@ -63,6 +64,24 @@ if (loginForm) {
         url = 'http://localhost:8000/user/authenticate'
 
     validateForm({form: loginForm, url: url, method: method, msg: msg});
+}
+
+
+if (categoriesDeleteBtn) {
+    categoriesDeleteBtn.addEventListener('click', (e) => {
+        let id = e.target.dataset.categoryId;
+        let formData = new FormData();
+        formData.append('_token', _token)
+        // formData.append('_method', 'DELETE')
+        // console.log(e.target)
+
+        fetch(`http://localhost:8000/categories/${id}/delete`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: formData}).then(res => {
+            let status = res.status;
+            if (status === 200)
+                location.reload();
+            // console.log(res)
+        })
+    });
 }
 
 if (dropBtn) {

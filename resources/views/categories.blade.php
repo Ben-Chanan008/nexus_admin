@@ -55,7 +55,7 @@
                                     <td><p class="lead h3">{{$categories->category_name}}</p></td>
                                     <td><p class="lead h3">{{$categories->created_at}}</p></td>
                                     <td><p class="lead h3">{{$categories->updated_at}}</p></td>
-                                    <td data-category-id="{{$categories->id}}"><i class="far categories-delete-btn fa-trash-alt text-danger"></i></td>
+                                    <td><i class="far categories-delete-btn fa-trash-alt text-danger" data-category-id="{{$categories->id}}"></i></td>
                                 </tr>
 
                             @endforeach

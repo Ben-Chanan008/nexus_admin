@@ -129,4 +129,8 @@ input.floating:focus ~ .float-label, input.floating:not(:placeholder-shown) ~ .f
   }
 }
 
+.categories-delete-btn {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.css.map */

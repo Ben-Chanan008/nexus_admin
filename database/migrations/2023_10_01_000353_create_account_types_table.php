@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('icon');
             $table->string('account_type');
-            $table->boolean('is_active')->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
             $table->timestamps();
         });
     }

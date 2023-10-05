@@ -50,6 +50,7 @@ const validateForm = ({form, url, method, msg}) => {
         formData.append('_token', _token)
         validateFormGroup(form);
         if (!Object.keys(errorBag[form.id]).length) {
+            msg.innerText = '';
             fetch(url, {method: method, body: formData}).then(res => {
                 status = res.status;
                 return res.json()
