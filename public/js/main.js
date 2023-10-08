@@ -3,9 +3,10 @@ const categoriesDeleteBtn = document.querySelector('.categories-delete-btn');
 const accountType = document.querySelectorAll('.account-type');
 const loginForm = document.querySelector('.login-form');
 const loader = document.querySelector('.loader');
-const dropDownContainer = document.querySelector('.drop-down-container');
 const dropBtn = document.querySelector('.btn-drop');
+const filterBtn = document.querySelector('.filter-btn');
 const megaCheckBox = document.querySelector('.mega-check');
+const activeBtn = document.querySelectorAll('.active-btn');
 const msg = document.querySelector('.msg');
 let _token = document.querySelector('meta[name]').attributes.name.value;
 
@@ -72,10 +73,10 @@ if (categoriesDeleteBtn) {
         let id = e.target.dataset.categoryId;
         let formData = new FormData();
         formData.append('_token', _token)
-        // formData.append('_method', 'DELETE')
+        formData.append('_method', 'DELETE')
         // console.log(e.target)
 
-        fetch(`http://localhost:8000/categories/${id}/delete`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: formData}).then(res => {
+        fetch(`http://localhost:8000/categories/${id}/delete`, {method: 'POST', body: formData}).then(res => {
             let status = res.status;
             if (status === 200)
                 location.reload();
@@ -99,7 +100,6 @@ if (dropBtn) {
         duration: 100
     }
 
-    let dropDownDropped;
     let dropDownContent = document.querySelector('.user-links');
     dropBtn.addEventListener('click', (e) => {
         console.log(dropDownContent)
@@ -109,21 +109,74 @@ if (dropBtn) {
         }, 10))
 
 
-        dropDownContent.style.display = 'block';
+        // dropDownContent.style.display = 'block';
         // dropDownContent.style.transition = 'transform .5s ease-in-out ';
 
-        dropDownDropped = true;
     });
 
     // const userLinks = document.querySelector('.user-links');
-
     document.addEventListener('click', (e) => {
+        let isDroppedDown = e.target.matches('.btn-drop');
 
-        if (dropDownDropped && !(dropDownContainer.matches).call(dropDownContainer, ':hover')) {
+        if (!isDroppedDown && e.target.closest('.drop-down-container') === null) {
             dropDownContent.style.display = 'none';
-
+        } else {
+            dropDownContent.style.display = 'block';
         }
     });
 
 
+}
+
+if (filterBtn) {
+    let keyFrames = [
+        {
+            opacity: 0,
+        },
+        {
+            opacity: 1,
+        }
+    ];
+
+    let timing = {
+        duration: 500
+    }
+
+    let filter = document.querySelector('.filter')
+    filterBtn.addEventListener('click', (e) => {
+        // console.log(dropDownContent)
+        const filterAnim = filter.animate(keyFrames, timing);
+        filterAnim.finished.then(() => setTimeout(() => {
+            filter.style.opacity = '1';
+        }, 100))
+    });
+    document.addEventListener('click', (e) => {
+        let isDroppedDown = e.target.matches('.filter-btn');
+
+        if (!isDroppedDown && e.target.closest('.filter-container') === null) {
+            filter.style.display = 'none';
+        } else {
+            filter.style.display = 'block';
+        }
+    });
+}
+
+if (activeBtn) {
+    activeBtn.forEach(btn => {
+        btn.addEventListener('dblclick', (e) => {
+            console.log(e);
+
+            let userId = e.target.dataset.userId;
+
+            let formData = new FormData();
+            formData.append('_token', _token);
+            formData.append('user_id', userId)
+
+            fetch('http://localhost:8000/users/activate', {method: 'POST', body: formData}).then(res => {
+                let status = res.status;
+                if (status === 200)
+                    location.reload();
+            })
+        });
+    });
 }

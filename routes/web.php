@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
 
 Route::get('users', [UsersController::class, 'index'])->middleware('auth');
 Route::post('users', [UsersController::class, 'store']);
+Route::post('users/activate', [UsersController::class, 'activate']);
 
 Route::get('accounts', [AccountController::class, 'show'])->middleware('auth');
 
@@ -38,6 +40,6 @@ Route::get('categories', [CategoriesController::class, 'index'])->middleware('au
 Route::post('categories', [CategoriesController::class, 'store']);
 Route::delete('categories/{category}/delete', [CategoriesController::class, 'destroy']);
 
-Route::get('products');
+Route::get('products', [ProductController::class, 'index']);
 
 //Route::post('account', [AccountController::class, 'edit']);

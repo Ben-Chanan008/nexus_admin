@@ -1,3 +1,18 @@
 .bg-light, .btn-light {
     background-color: rgba(145, 158, 171, 0.16) !important;
 }
+
+@mixin changeMode($bg-class, $color, $text-class){
+    .#{$bg-class} {
+        background-color: $color !important;
+    }
+
+    .#{$text-class} {
+        color: $color !important ;
+    }
+
+}
+
+.nx-dark-theme{
+    @include changeMode(bg-white, #122, text-white);
+}

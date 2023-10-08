@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 @import "color.css";
+
+@mixin dropDown($wval) {
+    display: none;
+    transition: transform .2s ease-in-out;
+    width: $wval;
+}
+
 
 body {
     font-family: 'Inclusive Sans', sans-serif;
@@ -139,9 +147,7 @@ input.floating {
 
     .user-links {
         //transform: translateY(10%);
-        display: none;
-        transition: transform .2s ease-in-out;
-        width: 200px;
+        @include dropDown(200px);
         @media only screen and (min-width: 992px) {
             left: -200% !important;
         }
@@ -155,14 +161,37 @@ input.floating {
         }
     }
 
-    //.start-50{
-    //    @media screen and (max-width: ) {
-    //
-    //    }
-    //}
 }
 
+.filter {
+    @include dropDown(200px);
+
+    @media only screen and (max-width: 992px) {
+        left: -80px !important;
+    }
+
+    @media only screen and (min-width: 992px) {
+        left: -80px !important;
+    }
+
+    @media only screen and (max-width: 576px) {
+        left: -130px !important;
+    }
+}
 
 .categories-delete-btn {
     cursor: pointer;
+}
+
+.filter-btn {
+    &:focus {
+        ~ .filter {
+            display: block;
+        }
+    }
+}
+
+.product-card {
+    height: 400px !important;
+    font-family: 'Roboto', 'sans-serif' !important;
 }

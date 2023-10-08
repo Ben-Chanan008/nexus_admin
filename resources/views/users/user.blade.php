@@ -1,9 +1,5 @@
 <x-base_struct title="Users">
     <x-partials.navigation/>
-    @php
-        $text = 'User';
-        $action = 'users'
-    @endphp
     <div class="container">
         <section>
             <div class="d-flex justify-content-between">
@@ -56,11 +52,11 @@
                                     <td><p class="account-type" data-account="{{$users->account}}"></p></td>
                                     @if($users->is_active === 1)
                                         <td class="">
-                                            <button class="btn btn-success">Active</button>
+                                            <button data-user-id="{{$users->id}}" class="active-btn btn btn-outline-success">Active</button>
                                         </td>
                                     @else
                                         <td class="">
-                                            <button class="btn px-3 btn-success">InActive</button>
+                                            <button class="btn px-3 btn-outline-danger active-btn" data-user-id="{{$users->id}}">Inactive</button>
                                         </td>
                                     @endif
                                     <td><p>{{$users->username}}</p></td>
@@ -73,7 +69,7 @@
                 </div>
             </div>
         </section>
-        <x-_modal :text="$text" :action="$action">
+        <x-_modal :text=" $text" action="users">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input id="name" name="name" type="text" class="form-control"/>

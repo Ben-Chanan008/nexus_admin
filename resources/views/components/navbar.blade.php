@@ -8,7 +8,7 @@
 
         <div class="d-flex nav-links">
             <div class="d-flex p-2 mx-2 justify-content-center align-items-center rounded-circle bg-light">
-                <i class="far fa-user"></i>
+                <i class="far fa-moon-stars"></i>
             </div>
             <div class="d-flex p-2 justify-content-center align-items-center mx-2 rounded-circle bg-light position-relative drop-down-container">
                 <button class="btn-drop border-0 bg-transparent"><img alt="user-img" src="{{asset('images/user-img.png')}}" height="50px" width="50px" class="img-fluid"/></button>

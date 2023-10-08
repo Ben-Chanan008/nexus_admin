@@ -35,7 +35,7 @@
                 </a>
             </div>
             <div class="mb-3">
-                <a class="btn p-3 btn-light w-100 d-flex align-items-center justify-content-start">
+                <a href="/products" class="btn p-3 btn-light w-100 d-flex align-items-center justify-content-start">
                     <i class="far fa-shopping-cart me-3"></i>
                     <p class="mb-0">Products</p>
                 </a>

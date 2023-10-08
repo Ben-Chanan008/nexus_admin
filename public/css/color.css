@@ -2,4 +2,11 @@
   background-color: rgba(145, 158, 171, 0.16) !important;
 }
 
+.nx-dark-theme .bg-white {
+  background-color: #122 !important;
+}
+.nx-dark-theme .text-white {
+  color: #122 !important;
+}
+
 /*# sourceMappingURL=color.css.map */
