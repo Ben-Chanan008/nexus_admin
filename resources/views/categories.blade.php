@@ -17,7 +17,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="d-flex w-50 search align-items-center ms-4 ">
                         <i class="far fa-magnifying-glass"></i>
-                        <input class="border-0 form-control p-3 w-100" placeholder="Search User..."/>
+                        <input class="border-0 form-control search-filter p-3 w-100" placeholder="Search Category..."/>
                     </div>
                     <i class="far text-black fa-bars-filter"></i>
                 </div>
@@ -30,6 +30,7 @@
                             </button>
                         </div>
                     @else
+                        <div class="d-flex data-msg"></div>
                         <table class="table">
                             <thead>
                             <th>
@@ -45,7 +46,7 @@
                             </thead>
                             <tbody>
                             @foreach($category as $key => $categories)
-                                <tr class="p-5">
+                                <tr class="p-5 data">
                                     <td>
                                         <div>
                                             <input type="checkbox" class="form-control-check user-check" id="{{$categories->id}}" name="{{$categories->id}}"/>

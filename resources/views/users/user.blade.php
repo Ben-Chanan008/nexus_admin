@@ -12,7 +12,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="d-flex w-50 search align-items-center ms-4 ">
                         <i class="far fa-magnifying-glass"></i>
-                        <input class="border-0 form-control p-3 w-100" placeholder="Search User..."/>
+                        <input class="border-0 form-control p-3 w-100 search-filter" placeholder="Search User..."/>
                     </div>
                     <i class="far text-black fa-bars-filter"></i>
                 </div>
@@ -25,23 +25,25 @@
                             </button>
                         </div>
                     @else
+                        <div class="d-flex data-msg"></div>
                         <table class="table">
                             <thead>
-                            <th>
-                                <div>
-                                    <input type="checkbox" class="form-control-check mega-check" id="checkBox"/>
-                                    <label for="checkBox" class="box-content"></label>
-                                </div>
-                            </th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Account</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Username</th>
+                            <tr>
+                                <th>
+                                    <div>
+                                        <input type="checkbox" class="form-control-check mega-check" id="checkBox"/>
+                                        <label for="checkBox" class="box-content"></label>
+                                    </div>
+                                </th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Account</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Username</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($user as $key => $users)
-                                <tr class="p-5">
+                                <tr class="p-5 data">
                                     <td>
                                         <div>
                                             <input type="checkbox" class="form-control-check user-check" id="{{$users->id}}" name="{{$users->id}}"/>
@@ -61,7 +63,6 @@
                                     @endif
                                     <td><p>{{$users->username}}</p></td>
                                 </tr>
-
                             @endforeach
                             </tbody>
                         </table>

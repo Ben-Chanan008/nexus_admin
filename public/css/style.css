@@ -164,4 +164,8 @@ input.floating:focus ~ .float-label, input.floating:not(:placeholder-shown) ~ .f
   font-family: "Roboto", "sans-serif" !important;
 }
 
+option.category-list[selected=""] {
+  color: #ccc !important;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('products');
+        $products = Product::all();
+
+        return view('products', ['categories' => Categories::all(), 'products' => $products]);
     }
 
     /**
@@ -23,7 +27,24 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        return Product::create($request->all());
+        $product = $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'about' => 'required',
+            'body' => 'required',
+            'review' => 'required',
+            'rating' => 'required',
+            'images' => ['required', Rule::imageFile()],
+            'price' => ['required', 'numeric'],
+        ]);
+
+        if($request->hasFile('images')){
+            $product['images'] = $request->file('images')->store('product_images', 'public');
+        }
+
+        Product::create($product);
+
+        return redirect('/');
     }
 
     /**

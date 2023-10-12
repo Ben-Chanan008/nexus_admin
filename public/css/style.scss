@@ -195,3 +195,7 @@ input.floating {
     height: 400px !important;
     font-family: 'Roboto', 'sans-serif' !important;
 }
+
+option.category-list[selected = ''] {
+    color: #ccc !important;
+}

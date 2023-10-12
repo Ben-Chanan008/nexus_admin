@@ -1,5 +1,6 @@
-const deleteBtn = document.querySelector('.delete-btn');
-const categoriesDeleteBtn = document.querySelector('.categories-delete-btn');
+const searchBar = document.querySelector('.search-filter');
+const deleteBtn = document.querySelectorAll('.delete-btn');
+const categoriesDeleteBtn = document.querySelectorAll('.categories-delete-btn');
 const accountType = document.querySelectorAll('.account-type');
 const loginForm = document.querySelector('.login-form');
 const loader = document.querySelector('.loader');
@@ -8,6 +9,7 @@ const filterBtn = document.querySelector('.filter-btn');
 const megaCheckBox = document.querySelector('.mega-check');
 const activeBtn = document.querySelectorAll('.active-btn');
 const msg = document.querySelector('.msg');
+const dataMsg = document.querySelector('.data-msg');
 let _token = document.querySelector('meta[name]').attributes.name.value;
 
 if (megaCheckBox)
@@ -39,23 +41,21 @@ if (accountType) {
 }
 
 if (deleteBtn) {
-    deleteBtn.addEventListener('click', (e) => {
-        let id = e.target.dataset.id;
-        console.log(_token)
-        let formData = new FormData();
-        formData.append('_token', _token)
-        formData.append('_method', 'DELETE')
-        fetch(`http://localhost:8000/accounts/${id}/delete`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: formData}).then(res => {
-            let status = res.status;
-            // if (status === 200)
-            //     location.reload();
-            console.log(res)
-            return res.json()
-        }).then(data => {
-            console.log(data)
-            document.querySelector('#account_type_wrapper').innerHTML = data;
-        });
+    deleteBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let id = e.target.dataset.id;
+            console.log(_token)
+            let formData = new FormData();
+            formData.append('_token', _token)
+            formData.append('_method', 'DELETE')
 
+            fetch(`http://localhost:8000/accounts/${id}/delete`, {method: 'POST', body: formData}).then(res => {
+                let status = res.status;
+                if (status === 200)
+                    location.reload();
+                console.log(res)
+            });
+        })
     });
 }
 
@@ -69,20 +69,22 @@ if (loginForm) {
 
 
 if (categoriesDeleteBtn) {
-    categoriesDeleteBtn.addEventListener('click', (e) => {
-        let id = e.target.dataset.categoryId;
-        let formData = new FormData();
-        formData.append('_token', _token)
-        formData.append('_method', 'DELETE')
-        // console.log(e.target)
+    categoriesDeleteBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let id = e.target.dataset.categoryId;
+            let formData = new FormData();
+            formData.append('_token', _token)
+            formData.append('_method', 'DELETE')
+            // console.log(e.target)
 
-        fetch(`http://localhost:8000/categories/${id}/delete`, {method: 'POST', body: formData}).then(res => {
-            let status = res.status;
-            if (status === 200)
-                location.reload();
-            // console.log(res)
-        })
-    });
+            fetch(`http://localhost:8000/categories/${id}/delete`, {method: 'POST', body: formData}).then(res => {
+                let status = res.status;
+                if (status === 200)
+                    location.reload();
+                console.log(res)
+            })
+        });
+    })
 }
 
 if (dropBtn) {
@@ -179,4 +181,41 @@ if (activeBtn) {
             })
         });
     });
+}
+
+if (searchBar) {
+    searchBar.addEventListener('input', (e) => filter(e.target.value, dataMsg));
+
+    const filter = (searchTerm, msg) => {
+        let items = document.querySelectorAll('.data');
+        // console.log(items);
+        let searchItems = [];
+
+        searchItems.push(items);
+        // console.log(searchItems)
+        let searched = [];
+        searchItems.forEach(item => {
+
+            item.forEach(data => {
+                if (data.innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    data.classList.remove('d-none');
+                    msg.nextElementSibling.classList.remove('d-none');
+                    searched.push(data);
+                    console.log('Working!!!');
+                } else {
+                    data.classList.add('d-none');
+                }
+
+                if (!searched.length) {
+                    msg.nextElementSibling.classList.add('d-none');
+                    msg.innerHTML = '<p class="text-danger m-auto fs-1">No Results match Your Search</p>'
+                    msg.classList.remove('d-none');
+                } else {
+                    msg.classList.add('d-none');
+                }
+
+            })
+        });
+
+    };
 }

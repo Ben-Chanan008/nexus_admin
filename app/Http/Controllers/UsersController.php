@@ -48,13 +48,14 @@ class UsersController extends Controller
         ]);
 
         $current_user = User::where('email', $form_fields['email'])->get();
-//        return dd($current_user[0]->account);
-        if($current_user)
+        if(!empty($current_user))
             $current_user_account = $current_user[0];
         else
-            return response(['User Is Invalid'], 422);
-
-        if ($current_user_account->account === 1) {
+            return response(['User Does Not Exist'], 422);
+        
+        $account_value = AccountType::find($current_user_account)->first();    
+        // return dd( $account_value);
+        if (str_contains($account_value->account_type, 'Administrator')) {
             if ($current_user_account->is_deleted !== 1) {
                 if (auth()->attempt($form_fields)) {
                     $request->session()->regenerate();
@@ -62,7 +63,7 @@ class UsersController extends Controller
                 } else
                     return response(['Invalid Credentials'], 422);
             } else {
-                return response(['User Does Not Exist'], 422);
+                return response(['User Is Invalid'], 422);
             }
         } else
             return response(['Invalid Account Type'], 422);

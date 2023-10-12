@@ -19,7 +19,7 @@ class AccountTypeFactory extends Factory
         return [
             //
             'icon' => 'far fa-gameboard',
-            'account_type' => fake()->sentence(1),
+            'account_type' => 'Administrator Account',
         ];
     }
 }
