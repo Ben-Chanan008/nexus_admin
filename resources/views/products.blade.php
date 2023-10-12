@@ -44,7 +44,7 @@
         <div class="mx-5 my-5">
             <div class="row">
                 @forelse($products as $key => $product)
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 data">
                         <div class="m-2">
                             <div class="shadow card product-card">
                                 <div class="card-header h-75 p-0">
