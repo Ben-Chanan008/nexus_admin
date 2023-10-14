@@ -40,7 +40,7 @@ Route::get('categories', [CategoriesController::class, 'index'])->middleware('au
 Route::post('categories', [CategoriesController::class, 'store']);
 Route::delete('categories/{category}/delete', [CategoriesController::class, 'destroy']);
 
-Route::get('products', [ProductController::class, 'index']);
+Route::get('products', [ProductController::class, 'index'])->middleware('auth');
 Route::post('products', [ProductController::class, 'store']);
 
 //Route::post('account', [AccountController::class, 'edit']);

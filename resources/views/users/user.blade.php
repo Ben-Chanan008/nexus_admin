@@ -38,6 +38,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Account</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Username</th>
                             </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                             <button class="btn px-3 btn-outline-danger active-btn" data-user-id="{{$users->id}}">Inactive</button>
                                         </td>
                                     @endif
+                                    <td><p>{{$users->email}}</p></td>
                                     <td><p>{{$users->username}}</p></td>
                                 </tr>
                             @endforeach
